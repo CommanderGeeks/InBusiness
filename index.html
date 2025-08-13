@@ -69,6 +69,7 @@
             text-decoration: none;
             transition: color 0.3s;
             cursor: pointer;
+            position: relative;
         }
 
         .nav-links a:hover {
@@ -77,8 +78,16 @@
 
         .nav-links a.active {
             color: var(--secondary);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 2px;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--secondary);
         }
 
         .cta-button {
@@ -98,9 +107,10 @@
             box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
         }
 
-        /* Tab System */
+        /* Tab Content Sections */
         .tab-content {
             display: none;
+            animation: fadeIn 0.5s ease-in;
             padding-top: 80px;
             min-height: 100vh;
         }
@@ -280,6 +290,59 @@
             line-height: 1.6;
         }
 
+        /* How It Works Section */
+        .how-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .how-section h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--secondary);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
         /* Calculator Section */
         .calculator-section {
             max-width: 1200px;
@@ -433,35 +496,38 @@
 
         /* Whitepaper Section */
         .whitepaper-section {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .whitepaper-content {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 50px;
+            border-radius: 20px;
+            padding: 60px 40px;
         }
 
         .whitepaper-content h2 {
-            color: var(--secondary);
-            margin: 40px 0 20px 0;
-            font-size: 32px;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
-            padding-bottom: 10px;
+            font-size: 48px;
+            margin-bottom: 30px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .whitepaper-content h3 {
-            color: rgba(255, 255, 255, 0.9);
-            margin: 30px 0 15px 0;
-            font-size: 24px;
+            font-size: 28px;
+            margin: 40px 0 20px;
+            color: var(--secondary);
         }
 
         .whitepaper-content p {
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
             line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 20px;
         }
 
@@ -471,21 +537,18 @@
         }
 
         .whitepaper-content li {
+            font-size: 18px;
+            line-height: 1.8;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 10px;
         }
 
-        .token-specs {
+        .tokenomics-box {
             background: rgba(0, 102, 255, 0.1);
-            border: 1px solid rgba(0, 102, 255, 0.3);
+            border: 1px solid var(--primary);
             border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-
-        .token-specs h4 {
-            color: var(--secondary);
-            margin-bottom: 15px;
+            padding: 30px;
+            margin: 40px 0;
         }
 
         /* Market Fit Section */
@@ -577,261 +640,6 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        .onboarding-form {
-            display: none;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 30px;
-        }
-
-        .onboarding-form.active {
-            display: block;
-        }
-
-        .form-step {
-            display: none;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        .form-progress {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-
-        .progress-step {
-            flex: 1;
-            text-align: center;
-            position: relative;
-        }
-
-        .progress-step::after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: -50%;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .progress-step:last-child::after {
-            display: none;
-        }
-
-        .progress-step.completed::after {
-            background: var(--secondary);
-        }
-
-        .progress-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            margin: 0 auto 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .progress-step.active .progress-circle {
-            background: var(--gradient);
-            border-color: var(--secondary);
-            color: white;
-        }
-
-        .progress-step.completed .progress-circle {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-
-        .progress-label {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 15px;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--secondary);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .form-btn {
-            flex: 1;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .form-btn.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .form-btn.primary {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .form-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Crypto Widget */
-        .crypto-widget {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-        .wallet-connect {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .wallet-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ff4444;
-        }
-
-        .status-dot.connected {
-            background: var(--success);
-        }
-
-        .connect-wallet-btn {
-            background: var(--gradient);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .swap-interface {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            padding: 20px;
-        }
-
-        .swap-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .swap-input-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .token-select {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .swap-amount {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-            width: 100%;
-            outline: none;
-        }
-
-        .swap-arrow {
-            text-align: center;
-            margin: 10px 0;
-            font-size: 20px;
-            color: var(--secondary);
-        }
-
-        .swap-button {
-            width: 100%;
-            background: var(--gradient);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            border: none;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-
-        .swap-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
-        }
-
         /* Call to Action */
         .cta-section {
             text-align: center;
@@ -875,16 +683,43 @@
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
             color: var(--secondary);
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 14, 39, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+            
+            .nav-links.mobile-active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero {
@@ -900,10 +735,6 @@
             }
 
             .input-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .summary-cards {
                 grid-template-columns: 1fr;
             }
         }
@@ -933,14 +764,16 @@
     <header>
         <nav>
             <div class="logo" onclick="showTab('home')">IN BUSINESS</div>
-            <ul class="nav-links">
-                <li><a onclick="showTab('home')" class="nav-link active">Home</a></li>
-                <li><a onclick="showTab('calculator')" class="nav-link">Calculator</a></li>
-                <li><a onclick="showTab('whitepaper')" class="nav-link">White Paper</a></li>
-                <li><a onclick="showTab('market-fit')" class="nav-link">Market Fit</a></li>
-                <li><a onclick="showTab('get-started')" class="nav-link">Get Started</a></li>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showTab('dashboard')" class="nav-link" data-tab="dashboard">Dashboard</a></li>
+                <li><a onclick="showTab('how')" class="nav-link" data-tab="how">How It Works</a></li>
+                <li><a onclick="showTab('features')" class="nav-link" data-tab="features">Features</a></li>
+                <li><a onclick="showTab('calculator')" class="nav-link" data-tab="calculator">Calculator</a></li>
+                <li><a onclick="showTab('whitepaper')" class="nav-link" data-tab="whitepaper">White Paper</a></li>
+                <li><a onclick="showTab('market-fit')" class="nav-link" data-tab="market-fit">Market Fit</a></li>
             </ul>
-            <button class="cta-button" onclick="showTab('get-started')">Get In Business</button>
+            <button class="cta-button" onclick="showTab('getstarted')">Get In Business</button>
         </nav>
     </header>
 
@@ -955,29 +788,7 @@
             </p>
             <div class="hero-buttons fade-in">
                 <button class="cta-button pulse" onclick="showTab('calculator')">Calculate Returns</button>
-                <button class="cta-button" style="background: transparent; border: 2px solid var(--primary);" onclick="showTab('get-started')">Start Now</button>
-            </div>
-        </section>
-
-        <section class="dashboard">
-            <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Live Network Metrics</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">$0</div>
-                    <div class="stat-label">Monthly USD Investment</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Active Businesses</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0%</div>
-                    <div class="stat-label">Monthly Growth</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">$BUSINESS</div>
-                    <div class="stat-label">Token Symbol</div>
-                </div>
+                <button class="cta-button" style="background: transparent; border: 2px solid var(--primary);" onclick="showTab('getstarted')">Start Now</button>
             </div>
         </section>
 
@@ -1007,6 +818,100 @@
             </div>
         </section>
 
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Get In Business?</h2>
+            <p class="cta-subtitle">Join the universal business network today.</p>
+            <div class="hero-buttons">
+                <button class="cta-button pulse" style="font-size: 18px; padding: 15px 40px;" onclick="showTab('getstarted')">
+                    Start Your Monthly Investment
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dashboard Tab -->
+    <div id="dashboard" class="tab-content">
+        <section class="dashboard">
+            <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Live Network Metrics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Monthly USD Investment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Active Businesses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0%</div>
+                    <div class="stat-label">Monthly Growth</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$BUSINESS</div>
+                    <div class="stat-label">Token Symbol</div>
+                </div>
+            </div>
+            
+            <div class="network-viz">
+                <div class="network-content">
+                    <h2 class="network-title">Network Growth Visualization</h2>
+                    <p class="network-description">
+                        Watch as the network grows in real-time with each new business joining
+                    </p>
+                    <!-- Add more visualization elements here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- How It Works Tab -->
+    <div id="how" class="tab-content">
+        <section class="how-section">
+            <h2>How It Works</h2>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="feature-title">Join the Network</h3>
+                    <p class="feature-description">
+                        Businesses allocate 5-10% of monthly revenue to $BUSINESS tokens using our simple credit card on-ramp.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="feature-title">Network Effect</h3>
+                    <p class="feature-description">
+                        Every business that joins strengthens the network, increasing value for all participants.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="feature-title">Grow Together</h3>
+                    <p class="feature-description">
+                        As more businesses and investors join, the entire network benefits from collective growth.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="feature-title">Track Progress</h3>
+                    <p class="feature-description">
+                        Monitor your investment and network growth through our transparent dashboard metrics.
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 40px; margin-top: 40px;">
+                <h3 style="font-size: 32px; margin-bottom: 20px; text-align: center;">The Simple Truth</h3>
+                <p style="font-size: 20px; text-align: center; color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+                    No complex strategies. No confusing jargon.<br>
+                    Just businesses investing in businesses.<br>
+                    <strong style="color: var(--secondary);">Are you in business or out of business?</strong>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Features Tab -->
+    <div id="features" class="tab-content">
         <section class="features">
             <h2 style="text-align: center; font-size: 36px;">Why Choose $BUSINESS?</h2>
             <div class="features-grid">
@@ -1162,87 +1067,60 @@
         </section>
     </div>
 
-    <!-- Whitepaper Tab -->
+    <!-- White Paper Tab -->
     <div id="whitepaper" class="tab-content">
         <section class="whitepaper-section">
             <div class="whitepaper-content">
-                <h1 style="text-align: center; font-size: 48px; margin-bottom: 40px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    IN BUSINESS White Paper
-                </h1>
-
-                <h2>Executive Summary</h2>
+                <h2>White Paper</h2>
+                
+                <h3>Executive Summary</h3>
                 <p>
-                    In Business ($BUSINESS) is a revolutionary cryptocurrency that creates a global network of businesses and investors united by one simple truth: Everyone wants to be in business. Nobody wants to be out of business.
+                    In Business ($BUSINESS) is a revolutionary cryptocurrency that creates a global network of businesses 
+                    and investors united by one simple truth: Everyone wants to be in business. Nobody wants to be out of business.
                 </p>
                 <p>
-                    By enabling businesses to allocate a percentage of their monthly revenue into $BUSINESS tokens, we create a self-reinforcing economic flywheel that strengthens every participant's position while attracting new market entrants who want to be "in business."
+                    By enabling businesses to allocate a percentage of their monthly revenue into $BUSINESS tokens, 
+                    we create a self-reinforcing economic flywheel that strengthens every participant's position 
+                    while attracting new market entrants who want to be "in business."
                 </p>
-
-                <div class="token-specs">
-                    <h4>Token Specifications</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li>📌 <strong>Token Ticker:</strong> $BUSINESS</li>
-                        <li>📌 <strong>Blockchain:</strong> Base</li>
-                        <li>📌 <strong>Total Supply:</strong> 1,000,000,000 (Fixed, No Minting)</li>
-                        <li>📌 <strong>Launch Type:</strong> Fair Launch</li>
-                        <li>📌 <strong>Liquidity:</strong> V3 Pool, 1% Fee, 0% Tax</li>
+                
+                <div class="tokenomics-box">
+                    <h3>Token Details</h3>
+                    <ul>
+                        <li><strong>Token Ticker:</strong> $BUSINESS</li>
+                        <li><strong>Blockchain:</strong> Base</li>
+                        <li><strong>Total Supply:</strong> 1,000,000,000 (Fixed, No Minting)</li>
+                        <li><strong>Launch Type:</strong> Fair Launch</li>
+                        <li><strong>Liquidity:</strong> V3 Pool, 1% Fee, 0% Tax</li>
                     </ul>
                 </div>
-
-                <h2>The Concept: Radically Simple</h2>
-
-                <h3>The Core Proposition</h3>
+                
+                <h3>The Concept: Radically Simple</h3>
                 <p>
-                    Every successful business understands the power of strategic reserves and diversification. $BUSINESS offers businesses worldwide a unique opportunity to:
+                    Every successful business understands the power of strategic reserves and diversification. 
+                    $BUSINESS offers businesses worldwide a unique opportunity to strengthen their financial position 
+                    by converting 5-10% of monthly revenue into $BUSINESS tokens, joining a global network of businesses 
+                    all contributing to mutual growth, and benefiting from network effects as more businesses and investors 
+                    join the ecosystem.
                 </p>
-                <ul>
-                    <li>Strengthen their financial position by converting 5-10% of monthly revenue into $BUSINESS</li>
-                    <li>Join a global network of businesses all contributing to mutual growth</li>
-                    <li>Benefit from network effects as more businesses and investors join the ecosystem</li>
-                </ul>
-
+                
                 <h3>The Flywheel Effect</h3>
                 <p>
-                    The $BUSINESS ecosystem creates an unstoppable momentum where every participant benefits from every other participant's success:
+                    Businesses Contribute Monthly Revenue → Token Strengthens → Attracts More Businesses → 
+                    Attracts External Investors → Token Strengthens Further → Original Businesses Benefit More
                 </p>
+                <p>
+                    This creates an unstoppable momentum where every participant benefits from every other participant's success.
+                </p>
+
+                <h3>Market Mechanics</h3>
                 <ul>
-                    <li>Businesses Contribute Monthly Revenue</li>
-                    <li>Token Strengthens</li>
-                    <li>Attracts More Businesses</li>
-                    <li>Attracts External Investors</li>
-                    <li>Token Strengthens Further</li>
-                    <li>Original Businesses Benefit More</li>
+                    <li><strong>Token Distribution:</strong> 100% fair launch, no team allocation</li>
+                    <li><strong>Trading Infrastructure:</strong> Base network, Uniswap V3</li>
+                    <li><strong>Accessibility:</strong> Credit card on-ramp, monthly subscriptions</li>
                 </ul>
 
-                <h2>Market Mechanics</h2>
-
-                <h3>Token Distribution</h3>
-                <ul>
-                    <li><strong>Total Supply:</strong> 1,000,000,000 $BUSINESS</li>
-                    <li><strong>Fair Launch:</strong> 100% of tokens available to market</li>
-                    <li><strong>No Team Allocation:</strong> True decentralization from day one</li>
-                    <li><strong>No Future Minting:</strong> Supply is permanently fixed</li>
-                </ul>
-
-                <h3>Trading Infrastructure</h3>
-                <ul>
-                    <li><strong>Blockchain:</strong> Base (Ethereum L2)</li>
-                    <li><strong>DEX:</strong> Uniswap V3</li>
-                    <li><strong>Liquidity Fee:</strong> 1%</li>
-                    <li><strong>Transaction Tax:</strong> 0%</li>
-                    <li><strong>Slippage:</strong> Minimal due to deep liquidity</li>
-                </ul>
-
-                <h3>Accessibility</h3>
-                <ul>
-                    <li><strong>Credit Card On-Ramp:</strong> Direct fiat-to-$BUSINESS conversion</li>
-                    <li><strong>Monthly Subscription Options:</strong> Automated recurring purchases</li>
-                    <li><strong>No Web3 Knowledge Required:</strong> Simple as any online purchase</li>
-                </ul>
-
-                <h2>The Business Outreach Program</h2>
-
-                <h3>Systematic Growth Strategy</h3>
+                <h3>The Business Outreach Program</h3>
                 <p>Our dedicated team executes a precise outreach program:</p>
                 <ul>
                     <li>100 qualified businesses contacted daily</li>
@@ -1251,48 +1129,35 @@
                     <li>Immediate onboarding support</li>
                 </ul>
 
-                <h3>The Pitch: Clear and Compelling</h3>
-                <p style="font-style: italic; background: rgba(0, 102, 255, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    "Convert 5-10% of your monthly revenue into $BUSINESS. Join thousands of businesses worldwide building wealth together. Every business that joins strengthens your position. It's that simple."
+                <h3>Transparency & Metrics</h3>
+                <p>All metrics are:</p>
+                <ul>
+                    <li>Updated in real-time</li>
+                    <li>Independently verifiable on-chain</li>
+                    <li>Accessible to all participants</li>
+                    <li>Used to demonstrate momentum to new businesses</li>
+                </ul>
+                
+                <h3>Why Businesses Choose $BUSINESS</h3>
+                <ul>
+                    <li><strong>Network Effects at Scale:</strong> Every business that joins increases the value for all existing participants.</li>
+                    <li><strong>Treasury Diversification:</strong> Smart businesses don't keep all assets in one form.</li>
+                    <li><strong>Frictionless Entry:</strong> Credit card on-ramp and subscription options mean businesses can start immediately.</li>
+                    <li><strong>Community Strength:</strong> Being "in business" means joining a community of success-oriented entities.</li>
+                    <li><strong>First-Mover Advantage:</strong> Early participating businesses benefit most from network growth.</li>
+                </ul>
+                
+                <h3>The Vision</h3>
+                <p>
+                    When executed correctly, $BUSINESS will become the default treasury asset for forward-thinking businesses, 
+                    a multi-billion dollar network of mutual success, the simplest answer to "How can my business grow?", 
+                    and the universal symbol of being "in business."
                 </p>
-
-                <h3>Target Businesses</h3>
-                <ul>
-                    <li>Small to medium enterprises seeking treasury diversification</li>
-                    <li>Forward-thinking corporations embracing digital assets</li>
-                    <li>International businesses seeking global network effects</li>
-                    <li>Any entity that generates consistent revenue</li>
-                </ul>
-
-                <h2>Why Businesses Choose $BUSINESS</h2>
-
-                <h3>1. Network Effects at Scale</h3>
-                <p>Every business that joins increases the value for all existing participants.</p>
-
-                <h3>2. Treasury Diversification</h3>
-                <p>Smart businesses don't keep all assets in one form. $BUSINESS offers exposure to a global business network.</p>
-
-                <h3>3. Frictionless Entry</h3>
-                <p>Credit card on-ramp and subscription options mean businesses can start immediately without crypto complexity.</p>
-
-                <h3>4. Community Strength</h3>
-                <p>Being "in business" means joining a community of success-oriented entities all working toward mutual growth.</p>
-
-                <h3>5. First-Mover Advantage</h3>
-                <p>Early participating businesses benefit most from network growth.</p>
-
-                <h2>The Vision: A Billion Dollar Network</h2>
-                <p>When executed correctly, $BUSINESS will become:</p>
-                <ul>
-                    <li>The default treasury asset for forward-thinking businesses</li>
-                    <li>A multi-billion dollar network of mutual success</li>
-                    <li>The simplest answer to "How can my business grow?"</li>
-                    <li>The universal symbol of being "in business"</li>
-                </ul>
-
-                <div style="text-align: center; margin-top: 60px; padding: 30px; background: rgba(0, 102, 255, 0.1); border-radius: 20px;">
-                    <h3 style="color: var(--secondary); margin-bottom: 20px;">$BUSINESS</h3>
-                    <p style="font-size: 20px; font-weight: 600;">Because everyone wants to be in business.</p>
+                
+                <div style="margin-top: 40px; padding: 30px; background: rgba(0, 102, 255, 0.05); border-radius: 15px; text-align: center;">
+                    <p style="font-size: 24px; font-weight: 600; color: var(--secondary);">
+                        $BUSINESS - Because everyone wants to be in business.
+                    </p>
                 </div>
             </div>
         </section>
@@ -1358,196 +1223,42 @@
                     As businesses worldwide seek new growth strategies in an increasingly digital economy, $BUSINESS offers a simple, powerful solution. The convergence of crypto adoption, business digitalization, and the need for diversified treasuries creates the perfect storm for $BUSINESS to thrive.
                 </p>
                 <div style="margin-top: 40px;">
-                    <button class="cta-button pulse" onclick="showTab('get-started')">Join the Network</button>
+                    <button class="cta-button pulse" onclick="showTab('getstarted')">Join the Network</button>
                 </div>
             </div>
         </section>
     </div>
 
     <!-- Get Started Tab -->
-    <div id="get-started" class="tab-content">
-        <section class="onboarding-section">
-            <h1 style="text-align: center; font-size: 48px; margin-bottom: 20px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Get In Business Now
-            </h1>
-            <p style="text-align: center; color: rgba(255, 255, 255, 0.7); margin-bottom: 40px;">
-                Choose your preferred way to join the $BUSINESS network
-            </p>
-
-            <div class="onboarding-choice">
-                <div class="choice-card" onclick="selectOption('monthly')">
-                    <div class="choice-icon">🔄</div>
-                    <div class="choice-title">Monthly Subscription</div>
-                    <div class="choice-description">Set up automatic monthly allocations from your business bank account</div>
+    <div id="getstarted" class="tab-content">
+        <section class="cta-section">
+            <h2 class="cta-title">Ready to Get In Business?</h2>
+            <p class="cta-subtitle">Choose your path to join the universal business network.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 800px; margin: 40px auto; width: 100%; padding: 0 20px;">
+                <div style="background: rgba(255, 255, 255, 0.05); border: 2px solid var(--primary); border-radius: 20px; padding: 40px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🏢</div>
+                    <h3 style="font-size: 28px; margin-bottom: 20px;">For Businesses</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; line-height: 1.6;">
+                        Allocate 5-10% of your monthly revenue to build treasury reserves in the global business network.
+                    </p>
+                    <a href="#" class="cta-button" style="display: inline-block;">Contact Our Team</a>
                 </div>
-                <div class="choice-card" onclick="selectOption('crypto')">
-                    <div class="choice-icon">💎</div>
-                    <div class="choice-title">Buy with Crypto</div>
-                    <div class="choice-description">Purchase $BUSINESS tokens directly with cryptocurrency</div>
-                </div>
-            </div>
-
-            <!-- Monthly Subscription Form -->
-            <div id="monthly-form" class="onboarding-form">
-                <div class="form-progress">
-                    <div class="progress-step active">
-                        <div class="progress-circle">1</div>
-                        <div class="progress-label">Business Info</div>
-                    </div>
-                    <div class="progress-step">
-                        <div class="progress-circle">2</div>
-                        <div class="progress-label">Allocation</div>
-                    </div>
-                    <div class="progress-step">
-                        <div class="progress-circle">3</div>
-                        <div class="progress-label">Banking</div>
-                    </div>
-                    <div class="progress-step">
-                        <div class="progress-circle">4</div>
-                        <div class="progress-label">Confirm</div>
-                    </div>
-                </div>
-
-                <!-- Step 1: Business Info -->
-                <div class="form-step active">
-                    <h3 style="color: var(--secondary); margin-bottom: 25px;">Business Information</h3>
-                    <div class="form-group">
-                        <label>Business Name</label>
-                        <input type="text" id="businessName" placeholder="Enter your business name">
-                    </div>
-                    <div class="form-group">
-                        <label>Business Email</label>
-                        <input type="email" id="businessEmail" placeholder="contact@yourbusiness.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Person</label>
-                        <input type="text" id="contactPerson" placeholder="Full name">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="phoneNumber" placeholder="+1 (555) 000-0000">
-                    </div>
-                    <div class="form-buttons">
-                        <button class="form-btn primary" onclick="nextStep(1)">Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Allocation -->
-                <div class="form-step">
-                    <h3 style="color: var(--secondary); margin-bottom: 25px;">Revenue Allocation</h3>
-                    <div class="form-group">
-                        <label>Monthly Revenue (USD)</label>
-                        <input type="number" id="formMonthlyRevenue" placeholder="50000">
-                    </div>
-                    <div class="form-group">
-                        <label>Allocation Percentage (%)</label>
-                        <input type="number" id="formAllocationPercent" placeholder="5" min="1" max="100">
-                    </div>
-                    <div style="background: rgba(0, 102, 255, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
-                        <p style="margin: 0;">Monthly $BUSINESS Investment: <span id="monthlyInvestmentPreview" style="font-size: 24px; font-weight: 700; color: var(--secondary);">$0</span></p>
-                    </div>
-                    <div class="form-buttons">
-                        <button class="form-btn secondary" onclick="previousStep(2)">Back</button>
-                        <button class="form-btn primary" onclick="nextStep(2)">Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Banking -->
-                <div class="form-step">
-                    <h3 style="color: var(--secondary); margin-bottom: 25px;">Banking Information</h3>
-                    <div class="form-group">
-                        <label>Account Holder Name</label>
-                        <input type="text" id="accountHolder" placeholder="Business name or authorized person">
-                    </div>
-                    <div class="form-group">
-                        <label>Bank Name</label>
-                        <input type="text" id="bankName" placeholder="Your bank name">
-                    </div>
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input type="text" id="accountNumber" placeholder="Account number">
-                    </div>
-                    <div class="form-group">
-                        <label>Routing Number</label>
-                        <input type="text" id="routingNumber" placeholder="Routing number">
-                    </div>
-                    <div class="form-buttons">
-                        <button class="form-btn secondary" onclick="previousStep(3)">Back</button>
-                        <button class="form-btn primary" onclick="nextStep(3)">Review</button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Confirm -->
-                <div class="form-step">
-                    <h3 style="color: var(--secondary); margin-bottom: 25px;">Confirm Your Subscription</h3>
-                    <div style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px;">
-                        <h4 style="color: white; margin-bottom: 20px;">Subscription Summary</h4>
-                        <div id="subscriptionSummary"></div>
-                    </div>
-                    <div style="margin: 30px 0;">
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                            <input type="checkbox" id="termsAgree" style="width: auto;">
-                            <span style="color: rgba(255, 255, 255, 0.8);">I agree to the terms and conditions and authorize monthly charges</span>
-                        </label>
-                    </div>
-                    <div class="form-buttons">
-                        <button class="form-btn secondary" onclick="previousStep(4)">Back</button>
-                        <button class="form-btn primary" onclick="submitSubscription()">Start Subscription</button>
-                    </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.05); border: 2px solid var(--secondary); border-radius: 20px; padding: 40px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">💎</div>
+                    <h3 style="font-size: 28px; margin-bottom: 20px;">For Investors</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; line-height: 1.6;">
+                        Set up monthly investments to benefit from the growing network of businesses worldwide.
+                    </p>
+                    <a href="#" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #00D4FF, #0066FF);">Start Investing</a>
                 </div>
             </div>
-
-            <!-- Crypto Purchase Widget -->
-            <div id="crypto-form" class="onboarding-form">
-                <div class="crypto-widget">
-                    <h3 style="color: var(--secondary); margin-bottom: 25px;">Buy $BUSINESS with Crypto</h3>
-                    
-                    <div class="wallet-connect">
-                        <div class="wallet-status">
-                            <div class="status-dot"></div>
-                            <span id="walletStatus">Wallet not connected</span>
-                        </div>
-                        <button class="connect-wallet-btn" onclick="connectWallet()">Connect Wallet</button>
-                    </div>
-
-                    <div class="swap-interface">
-                        <div class="swap-input">
-                            <div class="swap-input-header">
-                                <span style="color: rgba(255, 255, 255, 0.6);">From</span>
-                                <div class="token-select">
-                                    <span>ETH</span>
-                                    <span style="font-size: 12px;">▼</span>
-                                </div>
-                            </div>
-                            <input type="number" class="swap-amount" id="ethAmount" placeholder="0.0" oninput="updateSwapPreview()">
-                        </div>
-
-                        <div class="swap-arrow">↓</div>
-
-                        <div class="swap-input">
-                            <div class="swap-input-header">
-                                <span style="color: rgba(255, 255, 255, 0.6);">To</span>
-                                <div class="token-select">
-                                    <span>BUSINESS</span>
-                                </div>
-                            </div>
-                            <input type="number" class="swap-amount" id="businessAmount" placeholder="0.0" readonly>
-                        </div>
-
-                        <div style="margin: 20px 0; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: rgba(255, 255, 255, 0.6);">Rate</span>
-                                <span>1 ETH = 100,000 BUSINESS</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <span style="color: rgba(255, 255, 255, 0.6);">Network Fee</span>
-                                <span>~$5.00</span>
-                            </div>
-                        </div>
-
-                        <button class="swap-button" onclick="executSwap()">Swap</button>
-                    </div>
-                </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 18px;">
+                    Join the movement. Be in business.
+                </p>
             </div>
         </section>
     </div>
@@ -1555,9 +1266,9 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" onclick="showTab('whitepaper')">White Paper</a>
+                <a onclick="showTab('whitepaper')">White Paper</a>
                 <a href="#">Token Contract</a>
-                <a href="#" onclick="showTab('home')">Dashboard</a>
+                <a onclick="showTab('dashboard')">Dashboard</a>
                 <a href="#">Contact Team</a>
                 <a href="#">Twitter</a>
                 <a href="#">Telegram</a>
@@ -1572,41 +1283,41 @@
     </footer>
 
     <script>
-        // Tab Navigation
-        function showTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
+        // Tab navigation functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
                 tab.classList.remove('active');
             });
             
             // Show selected tab
-            const targetTab = document.getElementById(tabId);
-            if (targetTab) {
-                targetTab.classList.add('active');
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
             }
             
-            // Update nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
                 link.classList.remove('active');
-            });
-            
-            // Find and activate the corresponding nav link based on tab ID
-            const navMapping = {
-                'home': 'Home',
-                'calculator': 'Calculator',
-                'whitepaper': 'White Paper',
-                'market-fit': 'Market Fit',
-                'get-started': 'Get Started'
-            };
-            
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.textContent === navMapping[tabId]) {
+                if (link.getAttribute('data-tab') === tabName) {
                     link.classList.add('active');
                 }
             });
             
+            // Close mobile menu if open
+            const navLinksContainer = document.getElementById('navLinks');
+            navLinksContainer.classList.remove('mobile-active');
+            
             // Scroll to top
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('mobile-active');
         }
 
         // Calculator Functions
@@ -1627,7 +1338,6 @@
             for (let year = 1; year <= projectionYears; year++) {
                 let yearlyInvestment = 0;
                 let yearlyTokens = 0;
-                let yearStartTokens = totalTokens;
                 
                 for (let month = 1; month <= 12; month++) {
                     const totalMonth = (year - 1) * 12 + month;
@@ -1683,7 +1393,7 @@
                     <td>Year ${data.year}</td>
                     <td>${formatCurrency(data.annualInvestment)}</td>
                     <td>${formatNumber(data.tokensAcquired)}</td>
-                    <td>${data.tokenPrice.toFixed(4)}</td>
+                    <td>$${data.tokenPrice.toFixed(4)}</td>
                     <td>${formatCurrency(data.portfolioValue)}</td>
                     <td>${formatCurrency(data.cumulativeReturn)}</td>
                 </tr>
@@ -1697,7 +1407,7 @@
                     <td>${formatCurrency(data.investment)}</td>
                     <td>${formatNumber(data.tokensBought)}</td>
                     <td>${formatNumber(data.totalTokens)}</td>
-                    <td>${data.tokenPrice.toFixed(4)}</td>
+                    <td>$${data.tokenPrice.toFixed(4)}</td>
                     <td>${formatCurrency(data.portfolioValue)}</td>
                 </tr>
             `).join('');
@@ -1722,192 +1432,7 @@
                 maximumFractionDigits: 0
             }).format(amount);
         }
-
-        // Onboarding Functions
-        function selectOption(type) {
-            // Hide all forms first
-            document.querySelectorAll('.onboarding-form').forEach(form => {
-                form.classList.remove('active');
-            });
-            
-            // Deselect all cards
-            document.querySelectorAll('.choice-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            
-            // Show selected form and highlight card
-            if (type === 'monthly') {
-                document.getElementById('monthly-form').classList.add('active');
-                document.querySelectorAll('.choice-card')[0].classList.add('selected');
-            } else if (type === 'crypto') {
-                document.getElementById('crypto-form').classList.add('active');
-                document.querySelectorAll('.choice-card')[1].classList.add('selected');
-            }
-        }
-
-        function nextStep(currentStep) {
-            // Validate current step
-            if (!validateStep(currentStep)) {
-                return;
-            }
-            
-            // Update progress
-            document.querySelectorAll('.progress-step')[currentStep - 1].classList.add('completed');
-            document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('active');
-            document.querySelectorAll('.progress-step')[currentStep].classList.add('active');
-            
-            // Hide current step
-            document.querySelectorAll('.form-step')[currentStep - 1].classList.remove('active');
-            
-            // Show next step
-            document.querySelectorAll('.form-step')[currentStep].classList.add('active');
-            
-            // Update preview if moving to confirmation
-            if (currentStep === 3) {
-                updateSubscriptionSummary();
-            }
-        }
-
-        function previousStep(currentStep) {
-            // Update progress
-            document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('active');
-            document.querySelectorAll('.progress-step')[currentStep - 1].classList.remove('completed');
-            document.querySelectorAll('.progress-step')[currentStep - 2].classList.add('active');
-            document.querySelectorAll('.progress-step')[currentStep - 2].classList.remove('completed');
-            
-            // Hide current step
-            document.querySelectorAll('.form-step')[currentStep - 1].classList.remove('active');
-            
-            // Show previous step
-            document.querySelectorAll('.form-step')[currentStep - 2].classList.add('active');
-        }
-
-        function validateStep(step) {
-            switch(step) {
-                case 1:
-                    const businessName = document.getElementById('businessName').value;
-                    const businessEmail = document.getElementById('businessEmail').value;
-                    if (!businessName || !businessEmail) {
-                        alert('Please fill in all required fields');
-                        return false;
-                    }
-                    break;
-                case 2:
-                    const monthlyRevenue = document.getElementById('formMonthlyRevenue').value;
-                    const allocationPercent = document.getElementById('formAllocationPercent').value;
-                    if (!monthlyRevenue || !allocationPercent) {
-                        alert('Please specify your revenue and allocation percentage');
-                        return false;
-                    }
-                    break;
-                case 3:
-                    const accountHolder = document.getElementById('accountHolder').value;
-                    const bankName = document.getElementById('bankName').value;
-                    if (!accountHolder || !bankName) {
-                        alert('Please provide banking information');
-                        return false;
-                    }
-                    break;
-            }
-            return true;
-        }
-
-        function updateSubscriptionSummary() {
-            const businessName = document.getElementById('businessName').value;
-            const monthlyRevenue = document.getElementById('formMonthlyRevenue').value;
-            const allocationPercent = document.getElementById('formAllocationPercent').value;
-            const monthlyInvestment = (monthlyRevenue * allocationPercent / 100).toFixed(2);
-            
-            const summary = `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                    <span style="color: rgba(255, 255, 255, 0.6);">Business</span>
-                    <span>${businessName}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                    <span style="color: rgba(255, 255, 255, 0.6);">Monthly Revenue</span>
-                    <span>${parseFloat(monthlyRevenue).toLocaleString()}</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                    <span style="color: rgba(255, 255, 255, 0.6);">Allocation</span>
-                    <span>${allocationPercent}%</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                    <span style="color: rgba(255, 255, 255, 0.8); font-weight: 600;">Monthly Investment</span>
-                    <span style="font-size: 20px; color: var(--secondary); font-weight: 700;">${parseFloat(monthlyInvestment).toLocaleString()}</span>
-                </div>
-            `;
-            
-            document.getElementById('subscriptionSummary').innerHTML = summary;
-        }
-
-        function submitSubscription() {
-            if (!document.getElementById('termsAgree').checked) {
-                alert('Please agree to the terms and conditions');
-                return;
-            }
-            
-            // In production, this would submit to backend
-            alert('Success! Your monthly $BUSINESS subscription has been set up. You will receive a confirmation email shortly.');
-            
-            // Reset form
-            document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
-            document.querySelectorAll('.form-step')[0].classList.add('active');
-            document.querySelectorAll('.progress-step').forEach(step => {
-                step.classList.remove('active', 'completed');
-            });
-            document.querySelectorAll('.progress-step')[0].classList.add('active');
-            
-            // Clear form
-            document.querySelectorAll('input').forEach(input => {
-                if (input.type !== 'checkbox') {
-                    input.value = '';
-                } else {
-                    input.checked = false;
-                }
-            });
-        }
-
-        // Crypto Functions
-        function connectWallet() {
-            // Simulate wallet connection
-            const statusDot = document.querySelector('.status-dot');
-            const walletStatus = document.getElementById('walletStatus');
-            const connectBtn = document.querySelector('.connect-wallet-btn');
-            
-            statusDot.classList.add('connected');
-            walletStatus.textContent = '0x742d...3f9a';
-            connectBtn.textContent = 'Connected';
-            connectBtn.style.background = 'var(--success)';
-        }
-
-        function updateSwapPreview() {
-            const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
-            const businessAmount = ethAmount * 100000; // 1 ETH = 100,000 BUSINESS
-            document.getElementById('businessAmount').value = businessAmount.toFixed(0);
-        }
-
-        function executSwap() {
-            const ethAmount = document.getElementById('ethAmount').value;
-            if (!ethAmount || ethAmount <= 0) {
-                alert('Please enter an amount to swap');
-                return;
-            }
-            
-            // In production, this would execute the swap
-            alert(`Swapping ${ethAmount} ETH for ${ethAmount * 100000} BUSINESS tokens...`);
-        }
-
-        // Update monthly investment preview
-        document.getElementById('formMonthlyRevenue')?.addEventListener('input', updateMonthlyPreview);
-        document.getElementById('formAllocationPercent')?.addEventListener('input', updateMonthlyPreview);
-
-        function updateMonthlyPreview() {
-            const revenue = parseFloat(document.getElementById('formMonthlyRevenue').value) || 0;
-            const percent = parseFloat(document.getElementById('formAllocationPercent').value) || 0;
-            const monthly = revenue * percent / 100;
-            document.getElementById('monthlyInvestmentPreview').textContent = ' + monthly.toLocaleString();
-        }
-
+        
         // Animated counter for stats
         function animateValue(element, start, end, duration, prefix = '', suffix = '') {
             let startTimestamp = null;
@@ -1923,13 +1448,27 @@
             window.requestAnimationFrame(step);
         }
 
-        // Simulate live stats updates
-        setTimeout(() => {
-            const stats = document.querySelectorAll('.stat-value');
-            animateValue(stats[0], 0, 0, 2000, ', '');
-            animateValue(stats[1], 0, 0, 2000, '', '');
-            animateValue(stats[2], 0, 0, 2000, '', '%');
-        }, 1000);
+        // Simulate live stats updates when dashboard is shown
+        let statsAnimated = false;
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.id === 'dashboard' && mutation.target.classList.contains('active') && !statsAnimated) {
+                    statsAnimated = true;
+                    setTimeout(() => {
+                        const stats = document.querySelectorAll('#dashboard .stat-value');
+                        animateValue(stats[0], 0, 0, 2000, '$', '');
+                        animateValue(stats[1], 0, 0, 2000, '', '');
+                        animateValue(stats[2], 0, 0, 2000, '', '%');
+                    }, 500);
+                }
+            });
+        });
+
+        // Start observing
+        const dashboardTab = document.getElementById('dashboard');
+        if (dashboardTab) {
+            observer.observe(dashboardTab, { attributes: true, attributeFilter: ['class'] });
+        }
 
         // Add intersection observer for fade-in animations
         const observerOptions = {
@@ -1937,7 +1476,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -1946,9 +1485,12 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+        document.querySelectorAll('.feature-card, .stat-card, .step-card, .market-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            fadeObserver.observe(el);
         });
+    </script>
+</body>
+</html>
