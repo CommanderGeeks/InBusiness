@@ -1580,18 +1580,27 @@
             });
             
             // Show selected tab
-            document.getElementById(tabId).classList.add('active');
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
             
             // Update nav links
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // Find and activate the corresponding nav link
+            // Find and activate the corresponding nav link based on tab ID
+            const navMapping = {
+                'home': 'Home',
+                'calculator': 'Calculator',
+                'whitepaper': 'White Paper',
+                'market-fit': 'Market Fit',
+                'get-started': 'Get Started'
+            };
+            
             document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.textContent.toLowerCase().includes(tabId.replace('-', ' ')) || 
-                    (tabId === 'home' && link.textContent === 'Home') ||
-                    (tabId === 'get-started' && link.textContent === 'Get Started')) {
+                if (link.textContent === navMapping[tabId]) {
                     link.classList.add('active');
                 }
             });
